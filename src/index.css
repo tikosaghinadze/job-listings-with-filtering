@@ -5,4 +5,13 @@
 }
 body {
   font-family: "League Spartan", sans-serif;
+  background: #effafa;
+  width: 100vw;
+  min-height: 100vh;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
