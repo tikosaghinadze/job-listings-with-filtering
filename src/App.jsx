@@ -1,8 +1,11 @@
+import { useState } from "react";
 import "./App.css";
 import headerMobile from "../public/assets/images/bg-header-mobile.svg";
-import companylogo from "../public/assets/images/photosnap.svg";
+import data from "../data.json";
 
 function App() {
+  const [jobs, setJobs] = useState(data);
+  const [filteredArray, setFilteredArray] = useState([]);
   return (
     <>
       <header>
@@ -11,82 +14,65 @@ function App() {
           src={headerMobile}
           alt="header mobile pic"
         />
+      </header>
+      {filteredArray.length > 0 ? (
         <div className="filters">
           <div className="filter-items"></div>
-          <span className="clear">Clear</span>
+          <button className="clear">Clear</button>
         </div>
-      </header>
-      <main className="main-container">
-        <div className="job-div">
-          <div className="left-div">
-            <img className="logoSvg" src={companylogo} alt="" />
-            <div className="header-job">
-              <div className="company-new-feature">
-                <span className="company">Photosnap</span>
-                <div className="new-featured">
-                  <button className="new">NEW!</button>
-                  <button className="featured">FEATURED</button>
+      ) : null}
+
+      <main
+        className="main-container"
+        style={{ marginTop: filteredArray.length > 0 ? "120px" : "56px" }}
+      >
+        {jobs.map((job) => {
+          return (
+            <div className="job-div" key={job.id}>
+              <div className="left-div">
+                <img className="logoSvg" src={job.logo} alt="" />
+                <div className="header-job">
+                  <div className="company-new-feature">
+                    <span className="company">{job.company}</span>
+                    <div className="new-featured">
+                      {job.new ? <button className="new">NEW!</button> : null}
+                      {job.featured ? (
+                        <button className="featured">FEATURED</button>
+                      ) : null}
+                    </div>
+                  </div>
+                  <h3 className="position">{job.position}</h3>
+                  <div className="more-details">
+                    <span className="postedDay">{job.postedAt}</span>
+                    <div className="circle"></div>
+                    <span className="contract">{job.contract}</span>
+                    <div className="circle"></div>
+                    <span className="location">{job.location}</span>
+                  </div>
                 </div>
               </div>
-              <h3 className="position"> Senior Frontend Developer</h3>
-              <div className="more-details">
-                <span className="postedDay">1d ago</span>
-                <div className="circle"></div>
-                <span className="contract">Full Time</span>
-                <div className="circle"></div>
-                <span className="location">USA only</span>
+              <div className="rectangle"></div>
+              <div className="footer-job">
+                <button className="footer-btns">{job.role}</button>
+                <button className="footer-btns">{job.level}</button>
+                {job.languages.map((lang) => {
+                  return (
+                    <button key={lang} className="footer-btns">
+                      {lang}
+                    </button>
+                  );
+                })}
+                {job.tools.map((tool) => {
+                  return (
+                    <button key={tool} className="footer-btns">
+                      {tool}
+                    </button>
+                  );
+                })}
               </div>
             </div>
-          </div>
-          <div className="rectangle"></div>
-          <div className="footer-job">
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-          </div>
-        </div>
-        <div className="job-div">
-          <div className="left-div">
-            <img className="logoSvg" src={companylogo} alt="" />
-            <div className="header-job">
-              <div className="company-new-feature">
-                <span className="company">Photosnap</span>
-                <div className="new-featured">
-                  <button className="new">NEW!</button>
-                  <button className="featured">FEATURED</button>
-                </div>
-              </div>
-              <h3 className="position"> Senior Frontend Developer</h3>
-              <div className="more-details">
-                <span className="postedDay">1d ago</span>
-                <div className="circle"></div>
-                <span className="contract">Full Time</span>
-                <div className="circle"></div>
-                <span className="location">USA only</span>
-              </div>
-            </div>
-          </div>
-          <div className="rectangle"></div>
-          <div className="footer-job">
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-            <button className="footer-btns">Frontend</button>
-          </div>
-        </div>
+          );
+        })}
       </main>
     </>
   );
