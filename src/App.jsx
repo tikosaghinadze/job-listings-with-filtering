@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import headerMobile from "../public/assets/images/bg-header-mobile.svg";
 import data from "../data.json";
+import Remove from "../public/assets/images/icon-remove.svg";
 
 function App() {
   const [jobs, setJobs] = useState(data);
@@ -24,7 +25,22 @@ function App() {
       </header>
       {filteredArray.length > 0 ? (
         <div className="filters">
-          <div className="filter-items"></div>
+          <div className="filter-items">
+            {filteredArray.map((button) => {
+              return (
+                <div className="filter-button" key={button.value}>
+                  <h3>{button.value}</h3>
+                  <div className="remove-icon-div">
+                    <img
+                      className="remove-icon"
+                      src={Remove}
+                      alt="remove icon"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
           <button className="clear">Clear</button>
         </div>
       ) : null}
