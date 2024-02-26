@@ -6,6 +6,12 @@ import data from "../data.json";
 function App() {
   const [jobs, setJobs] = useState(data);
   const [filteredArray, setFilteredArray] = useState([]);
+  //onclick function
+  const onclickFilterhandler = (obj) => {
+    setFilteredArray((state) => {
+      return [...state, obj];
+    });
+  };
   return (
     <>
       <header>
