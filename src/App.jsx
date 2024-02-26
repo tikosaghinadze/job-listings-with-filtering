@@ -19,6 +19,10 @@ function App() {
     copyFilter.splice(index, 1);
     setFilteredArray(copyFilter);
   };
+  //clear onclick
+  const clearHandler = () => {
+    setFilteredArray([]);
+  };
   return (
     <>
       <header>
@@ -49,7 +53,9 @@ function App() {
               );
             })}
           </div>
-          <button className="clear">Clear</button>
+          <button onClick={() => clearHandler()} className="clear">
+            Clear
+          </button>
         </div>
       ) : null}
 
