@@ -13,7 +13,12 @@ function App() {
       return [...state, obj];
     });
   };
-  console.log(filteredArray);
+  // remove onclick
+  const buttonRemoveHandler = (index) => {
+    const copyFilter = [...filteredArray];
+    copyFilter.splice(index, 1);
+    setFilteredArray(copyFilter);
+  };
   return (
     <>
       <header>
@@ -26,11 +31,14 @@ function App() {
       {filteredArray.length > 0 ? (
         <div className="filters">
           <div className="filter-items">
-            {filteredArray.map((button) => {
+            {filteredArray.map((button, index) => {
               return (
                 <div className="filter-button" key={button.value}>
                   <h3>{button.value}</h3>
-                  <div className="remove-icon-div">
+                  <div
+                    className="remove-icon-div"
+                    onClick={() => buttonRemoveHandler(index)}
+                  >
                     <img
                       className="remove-icon"
                       src={Remove}
