@@ -23,6 +23,18 @@ function App() {
   const clearHandler = () => {
     setFilteredArray([]);
   };
+  //filter jobs
+  const filterJobs =
+    filteredArray.length === 0
+      ? jobs
+      : jobs.filter((job) => {
+          return filteredArray.every((button) => {
+            return (
+              job[button.property] == button.value ||
+              job[button.property].includes(button.value)
+            );
+          });
+        });
   return (
     <>
       <header>
@@ -61,9 +73,9 @@ function App() {
 
       <main
         className="main-container"
-        style={{ marginTop: filteredArray.length > 0 ? "120px" : "56px" }}
+        style={{ marginTop: filteredArray.length > 0 ? "60px" : "56px" }}
       >
-        {jobs.map((job) => {
+        {filterJobs.map((job) => {
           return (
             <div className="job-div" key={job.id}>
               <div className="left-div">
