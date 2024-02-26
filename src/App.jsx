@@ -7,11 +7,12 @@ function App() {
   const [jobs, setJobs] = useState(data);
   const [filteredArray, setFilteredArray] = useState([]);
   //onclick function
-  const onclickFilterhandler = (obj) => {
+  const onclickFilterHandler = (obj) => {
     setFilteredArray((state) => {
       return [...state, obj];
     });
   };
+  console.log(filteredArray);
   return (
     <>
       <header>
@@ -59,18 +60,53 @@ function App() {
               </div>
               <div className="rectangle"></div>
               <div className="footer-job">
-                <button className="footer-btns">{job.role}</button>
-                <button className="footer-btns">{job.level}</button>
+                <button
+                  className="footer-btns"
+                  onClick={() => {
+                    onclickFilterHandler({ property: "role", value: job.role });
+                  }}
+                >
+                  {job.role}
+                </button>
+                <button
+                  className="footer-btns"
+                  onClick={() => {
+                    onclickFilterHandler({
+                      property: "level",
+                      value: job.level,
+                    });
+                  }}
+                >
+                  {job.level}
+                </button>
                 {job.languages.map((lang) => {
                   return (
-                    <button key={lang} className="footer-btns">
+                    <button
+                      key={lang}
+                      className="footer-btns"
+                      onClick={() => {
+                        onclickFilterHandler({
+                          property: "languages",
+                          value: lang,
+                        });
+                      }}
+                    >
                       {lang}
                     </button>
                   );
                 })}
                 {job.tools.map((tool) => {
                   return (
-                    <button key={tool} className="footer-btns">
+                    <button
+                      key={tool}
+                      className="footer-btns"
+                      onClick={() => {
+                        onclickFilterHandler({
+                          property: "tools",
+                          value: tool,
+                        });
+                      }}
+                    >
                       {tool}
                     </button>
                   );
