@@ -251,4 +251,7 @@ header {
   .company {
     font-size: 18px;
   }
+  .filters {
+    max-width: 1110px;
+  }
 }
