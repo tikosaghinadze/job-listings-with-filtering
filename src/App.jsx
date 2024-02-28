@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import headerMobile from "../public/assets/images/bg-header-mobile.svg";
 import data from "../data.json";
-import Remove from "../public/assets/images/icon-remove.svg";
+import Filters from "./components/Filters";
 
 function App() {
   const [jobs, setJobs] = useState(data);
@@ -23,16 +23,6 @@ function App() {
     });
   };
 
-  // remove onclick
-  const buttonRemoveHandler = (index) => {
-    const copyFilter = [...filteredArray];
-    copyFilter.splice(index, 1);
-    setFilteredArray(copyFilter);
-  };
-  //clear onclick
-  const clearHandler = () => {
-    setFilteredArray([]);
-  };
   //filter jobs
   const filterJobs =
     filteredArray.length === 0
@@ -56,30 +46,10 @@ function App() {
       </header>
 
       {filteredArray.length > 0 ? (
-        <div className="filters">
-          <div className="filter-items">
-            {filteredArray.map((button, index) => {
-              return (
-                <div className="filter-button" key={button.value}>
-                  <h3>{button.value}</h3>
-                  <div
-                    className="remove-icon-div"
-                    onClick={() => buttonRemoveHandler(index)}
-                  >
-                    <img
-                      className="remove-icon"
-                      src={Remove}
-                      alt="remove icon"
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <button onClick={() => clearHandler()} className="clear">
-            Clear
-          </button>
-        </div>
+        <Filters
+          filterButtons={filteredArray}
+          setFiltereButtons={setFilteredArray}
+        />
       ) : null}
 
       <main

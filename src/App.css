@@ -213,7 +213,7 @@ header {
   cursor: pointer;
   background-color: #2b3939;
 }
-@media (max-width: 1440px) {
+@media (min-width: 1440px) {
   .rectangle {
     display: none;
   }
@@ -246,6 +246,7 @@ header {
   }
   .header-job {
     gap: 10px;
+    width: 259px;
   }
   .company {
     font-size: 18px;
