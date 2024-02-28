@@ -38,7 +38,9 @@ header {
   border-radius: 5px;
   background: #fff;
   box-shadow: 0px 15px 20px -5px rgba(13, 113, 130, 0.15);
+  margin-bottom: 0;
 }
+
 /*main container styles*/
 .main-container {
   margin-top: 56px;

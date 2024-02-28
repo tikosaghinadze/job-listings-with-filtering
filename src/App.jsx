@@ -10,9 +10,19 @@ function App() {
   //onclick function
   const onclickFilterHandler = (obj) => {
     setFilteredArray((state) => {
-      return [...state, obj];
+      // Check if the button is already in filteredArray
+      if (
+        !state.some(
+          (button) =>
+            button.property === obj.property || button.value === obj.value
+        )
+      ) {
+        return [...state, obj]; // Add the button only if it's not already in filteredArray
+      }
+      return state; // Return the current state without adding a duplicate button
     });
   };
+
   // remove onclick
   const buttonRemoveHandler = (index) => {
     const copyFilter = [...filteredArray];
@@ -35,6 +45,7 @@ function App() {
             );
           });
         });
+  console.log(filteredArray);
   return (
     <>
       <header>
@@ -44,6 +55,7 @@ function App() {
           alt="header mobile pic"
         />
       </header>
+
       {filteredArray.length > 0 ? (
         <div className="filters">
           <div className="filter-items">
