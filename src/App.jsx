@@ -45,7 +45,6 @@ function App() {
             );
           });
         });
-  console.log(filteredArray);
   return (
     <>
       <header>
