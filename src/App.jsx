@@ -7,6 +7,7 @@ import Filters from "./components/Filters";
 function App() {
   const [jobs, setJobs] = useState(data);
   const [filteredArray, setFilteredArray] = useState([]);
+  console.log(filteredArray);
   //onclick function
   const onclickFilterHandler = (obj) => {
     setFilteredArray((state) => {
@@ -14,7 +15,7 @@ function App() {
       if (
         !state.some(
           (button) =>
-            button.property === obj.property || button.value === obj.value
+            button.property === obj.property && button.value === obj.value
         )
       ) {
         return [...state, obj]; // Add the button only if it's not already in filteredArray
